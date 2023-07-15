@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import ar.com.codoacodo.oop.Articulo;
 
-public interface AltaArticuloController {
+public interface DAO {
 
     /*  Utilizar un Data Access Object (DAO) para abstraer y encapsular todos los accesos a la fuente de datos. 
         Principalmente independizar la aplicación de la forma de acceder a la base de datos */

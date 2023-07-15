@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import ar.com.codoacodo.db.AdministradorDeConexiones;
 import ar.com.codoacodo.oop.Articulo;
 
-public class MySQLDAOImpl implements AltaArticuloController {
+public class MySQLDAOImpl implements DAO {
 
     private String tableName;
 
@@ -78,9 +78,8 @@ public class MySQLDAOImpl implements AltaArticuloController {
     @Override
     public void create(Articulo articulo) throws Exception {
         String sql = "insert into " + this.tableName;
-        sql += "(titulo,autor,precio,fecha_creacion,novedad,codigo) ";
+        sql += "(titulo,autor,precio,fechaCreacion,novedad,codigo) ";
         sql += "values (?,?,?,?,?,?) ";
-        // 1 2 3 4 5
         
         Connection con = AdministradorDeConexiones.getConnection();
         PreparedStatement pst = con.prepareStatement(sql);
