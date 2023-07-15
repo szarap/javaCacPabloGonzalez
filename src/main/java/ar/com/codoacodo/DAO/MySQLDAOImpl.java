@@ -73,7 +73,7 @@ public class MySQLDAOImpl implements DAO {
 
     @Override
     public void update(Articulo articulo) {
-        String sql = "update " + this.tableName + " set titulo= , precio= , autor= ";
+        String sql = "update " + this.tableName + " set titulo= ? , precio= ?, autor= ? where id= ?";
 
         try (Connection con = AdministradorDeConexiones.getConnection();
         PreparedStatement statement = con.prepareStatement(sql)) {

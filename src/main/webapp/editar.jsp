@@ -1,5 +1,6 @@
 <%@ page import="ar.com.codoacodo.oop.Articulo" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +16,7 @@
 <body>
     <jsp:include page="navbar.jsp"/>
       <% 
-      Articulo articulo = (Articulo)request.getAttribute("articulo");
+      Articulo articulo = (Articulo)request.getAttribute("producto");
      %>
     <div class="container">
         <div class="row">
@@ -76,7 +77,7 @@
                                 class="form-control" 
                                 id="autor" 
                                 maxlength="50"
-                                value="<%=articulo.getCodigo()%>">
+                                value="<%=articulo.getAutor()%>">
                         </div>
                         <button class="btn btn-primary">
                             Modificar

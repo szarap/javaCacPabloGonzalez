@@ -56,6 +56,7 @@
                             <th scope="col">Codigo</th>
                             <th scope="col">Precio</th>
                             <th scope="col">Fecha</th>
+                            <th scope="col">Autor</th>
                             <th scope="col">Acciones</th>
                           </tr>
                         </thead>
@@ -69,6 +70,7 @@
                                     <td><%=unarticulo.getCodigo()%></td>
                                     <td><%=unarticulo.getPrecio()%></td>
                                     <td><%=unarticulo.getFechaCreacion()%></td>
+                                    <td><%=unarticulo.getAutor()%></td>
                                     <td>
                                         <a href="<%=request.getContextPath()%>/DeleteController?id=<%=unarticulo.getId()%>" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">
                                             Eliminar

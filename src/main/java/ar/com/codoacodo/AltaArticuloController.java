@@ -21,7 +21,7 @@ public class AltaArticuloController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         
         //CREATE CONTROLLER 
-        System.out.println("AltaArticuloController");
+        //System.out.println("AltaArticuloController");
 
         //parametros del front (<form>)
         String titulo = req.getParameter("nombre");
