@@ -73,7 +73,7 @@
                                         <a href="<%=request.getContextPath()%>/DeleteController?id=<%=unarticulo.getId()%>" class="btn btn-danger" tabindex="-1" role="button" aria-disabled="true">
                                             Eliminar
                                         </a>
-                                        <a href="<%=request.getContextPath()%>/EditarController?id=<%=unarticulo.getId()%>" 
+                                        <a href="<%=request.getContextPath()%>/UpdateController?id=<%=unarticulo.getId()%>" 
                                             class="btn btn-warning" tabindex="-1" role="button" aria-disabled="true">
                                           Editar
                                       </a>

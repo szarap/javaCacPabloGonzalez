@@ -74,6 +74,22 @@ public class MySQLDAOImpl implements DAO {
     @Override
     public void update(Articulo articulo) {
         String sql = "update " + this.tableName + " set titulo= , precio= , autor= ";
+
+        try (Connection con = AdministradorDeConexiones.getConnection();
+        PreparedStatement statement = con.prepareStatement(sql)) {
+
+       statement.setString(1, articulo.getTitulo());
+       statement.setDouble(2, articulo.getPrecio());
+       statement.setString(3, articulo.getAutor());
+       statement.setLong(4, articulo.getId());
+
+       statement.executeUpdate();
+
+
+   } catch (SQLException e) {
+       e.getMessage();
+   }
+
     }
 
     @Override
@@ -93,7 +109,7 @@ public class MySQLDAOImpl implements DAO {
         pst.setString(6, articulo.getCodigo());
 
         // RestultSet
-        pst.executeUpdate();// INSERT/UPDATE/DELETE
+        pst.executeUpdate();
     }
 
     private Date dateFrom(LocalDateTime ldt) {
@@ -128,10 +144,7 @@ public class MySQLDAOImpl implements DAO {
             String codigo = res.getString(7);
             Double precio = res.getDouble(8);
 
-            boolean esNovedad = novedad.equals(1L);// long
-            // TODO:
-            // LocalDateTime ldt =
-            // LocalDateTime.ofInstant(fechaCreacion.toInstant(),ZoneId.systemDefault());
+            boolean esNovedad = novedad.equals(1L);
 
             listado.add(new Articulo(id, titulo, imagen, autor, precio, esNovedad, codigo, LocalDateTime.now()));
         }
