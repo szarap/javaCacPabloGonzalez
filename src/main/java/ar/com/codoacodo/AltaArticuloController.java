@@ -1,37 +1,52 @@
 package ar.com.codoacodo;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 import ar.com.codoacodo.DAO.DAO;
 import ar.com.codoacodo.DAO.MySQLDAOImpl;
 import ar.com.codoacodo.oop.Articulo;
 import ar.com.codoacodo.oop.Libro;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
-public class AltaArticuloController 
-{
-    public static void main( String[] args )
-    {
-       String titulo = "el lalala";
-       String imagen = "imagen 3";
-       String autor = "yo";
-       double precio = 1500;
-       boolean novedad = true;
-       String isbn = "9999asdfas";
-       String codigo = "xxxxxxxx";
-       LocalDateTime ldt = LocalDateTime.now();
 
-       Articulo nuevo = new Libro(titulo, imagen, autor, precio, novedad, isbn, codigo, ldt);
+@WebServlet("/AltaArticuloController")
+public class AltaArticuloController extends HttpServlet {
 
-       //System.out.println(nuevo);
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        
+        //CREATE CONTROLLER 
+        System.out.println("AltaArticuloController");
 
-       DAO dao = new MySQLDAOImpl();
-
-       try {
-        dao.create(nuevo);
-    } catch (Exception e) {
-        System.out.println("error al ingresar un nuevo dato");
-        e.printStackTrace();
-    }
+        //parametros del front (<form>)
+        String titulo = req.getParameter("nombre");
+        double precio = Double.parseDouble(req.getParameter("precio"));
+        String autor  = req.getParameter("autor");
+        String codigo  = req.getParameter("codigo");
+        String isbn  = "123465465456";
+        LocalDateTime ldt = LocalDateTime.now();
+        String imagen = "";
+        
+        Articulo nuevo = new Libro(titulo, imagen, autor, precio, false, isbn, codigo, ldt);
+        
+        DAO dao = new MySQLDAOImpl();
+        
+        try {
+            dao.create(nuevo);
+            //redirect
+            //getServletContext().getRequestDispatcher("/ListadoArticuloController").forward(req, resp);//POST ListadoArticuloController
+            resp.sendRedirect(req.getContextPath() + "/ListadoArticuloController");
+        } catch (Exception e) {
+            //redirect
+            getServletContext().getRequestDispatcher("/nuevo.jsp").forward(req, resp);
+            e.printStackTrace();//muestra los pasos hasta el error
+            //e.getMessage();
+        } 
 
     }
 }

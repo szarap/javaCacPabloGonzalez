@@ -37,6 +37,7 @@ public class MySQLDAOImpl implements DAO {
 
         ResultSet res = pst.executeQuery();
 
+        //el orden de los parametros deben coincidir con el orden de los datos en la DB
         if (res.next()) {
             Long _id = res.getLong(1);
             String titulo = res.getString(2);
@@ -98,9 +99,6 @@ public class MySQLDAOImpl implements DAO {
     private Date dateFrom(LocalDateTime ldt) {
         java.util.Date date = Date.from(ldt.toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
         return new java.sql.Date(date.getTime());
-
-        // Calendar
-        // Gregorian Calendar
     }
 
     @Override
